@@ -6,7 +6,7 @@ const {
     createCustomer,
     deleteCustomer,
     updateCustomer
-} = require ('./CustomerRoutes.js')
+} = require ('../controller/CustomerController')
 
 //get all customers..
 router.get('/', getAllCustomers)
