@@ -3,8 +3,8 @@ const Inventory = require('../models/InventoryModel')
 //get inventory details..
 const getInventory = async (req,res) => {
     try{
-        const Inventory = await Inventory.find().sort({creatdAt: -1})
-        res.status(200).json(Inventory)
+        const inventory = await Inventory.find({}).sort({creatdAt: -1})
+        res.status(200).json(inventory)
     }catch(error){
         res.status(400).json({error:error.message})
     }

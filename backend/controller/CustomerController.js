@@ -1,4 +1,3 @@
-const express = require('express')
 const Customer = require('../models/CustomerModel')
 
 //get all customers..
