@@ -16,25 +16,25 @@ const InventorySchema = new Schema({
         required: true,
         enum:['Health Care', 'Beauty & Cosmatics', 'Foods & Beverage', 'Stationary', 'Groceries']
     },
-    quantity: {
+    Quantity: {
         type: Number,
         required: true,
         min: 0, 
     },
-    unitPrice: {
+    UnitPrice: {
         type: Number,
         required: true,
         min: 0, 
     },
-    supplier: {
+    Supplier: {
         type: String,
         required: true,
     },
-    reorderLevel: {
+    ReorderLevel: {
         type: Number,
         default: 10, // Threshold for low stock
     },
-    lastRestocked: {
+    LastRestocked: {
         type: Date,
         default: Date.now, // Tracks when the item was last restocked
     }
