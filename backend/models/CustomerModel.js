@@ -19,15 +19,15 @@ const CustomerSchema = new Schema({
         type: String,
         required: true
     },
-    email: {
+    Email: {
         type: String,
         required: true
     },
-    address: {
+    Address: {
         type: String,
         required: true
     },
-    loyaltyPoints: {
+    LoyaltyPoints: {
         type: Number,
         default: 0,
         min: 0,
@@ -35,4 +35,4 @@ const CustomerSchema = new Schema({
 
 }, {timestamps: true})
 
-const Customer = mongoose.model('Customer', CustomerSchema);
+module.exports = mongoose.model('Customer', CustomerSchema);
