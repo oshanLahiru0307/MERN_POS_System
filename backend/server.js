@@ -22,7 +22,7 @@ app.use((req,res,next)=>{
 app.use('/api/customer', CustomerRoutes)
 app.use('/api/inventory', InventoryRoutes)
 app.use('/api/shop', ShopRoutes)
-app.use('/api/suplier', SupplierRoutes)
+app.use('/api/supliers', SupplierRoutes)
 
 //connect mongodb..
 mongoose.connect(process.env.MONGO_URI)

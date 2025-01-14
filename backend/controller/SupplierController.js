@@ -34,7 +34,7 @@ const AddNewSupplier = async (req,res) => {
         Address
     } = req.body
     try{
-        const newSupplier = await Supplier.create({Supplier_name, Supplier_code, Contact, Email, Address})
+        const newSupplier = await Suppliers.create({Supplier_name, Supplier_code, Contact, Email, Address})
         res.status(200).json(newSupplier)
     }catch(error){
         res.status(400).json({error:error.message})
@@ -45,11 +45,11 @@ const AddNewSupplier = async (req,res) => {
 const DeleteSupplierDetails = async (req,res) => {
     const {id} = req.params
     try{
-        const supplier = await Supplier.findOneAndDelete({_id: id})
+        const supplier = await Suppliers.findOneAndDelete({_id: id})
         if(!supplier){
             return res.status(400).json({error:"there is not such a supplier"})
         }
-        res.status(200).json(shop)
+        res.status(200).json(supplier)
     }catch(error){
         res.status(400).json({error:error.message})
     }
@@ -59,11 +59,11 @@ const DeleteSupplierDetails = async (req,res) => {
 const UpdateSupplierDetails = async (req,res) => {
     const {id} = req.params
     try{
-        const supplier = await Supplier.findByIdAndUpdate({_id: id}, {...req.body})
+        const supplier = await Suppliers.findByIdAndUpdate({_id: id}, {...req.body})
         if(!supplier){
             return res.status(400).json({error:"there is not such a supplier"})
         }
-        res.status(200).json(shop)
+        res.status(200).json(supplier)
     }catch(error){
         res.status(400).json({error:error.message})
     }
