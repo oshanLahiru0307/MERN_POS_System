@@ -9,19 +9,19 @@ const {
     UpdateSupplierDetails
 } = require('../controller/SupplierController')
 
-//get Shops details..
+//get Supplier details..
 router.get('/', getSuppliersDetails)
 
-//get a single Shop details..
+//get a single Supplier details..
 router.get('/:id', getSupplierDetails)
 
-//add a new shop..
+//add a new Supplier..
 router.post('/', AddNewSupplier)
 
-//delete a shop..
+//delete a Supplier..
 router.delete('/:id', DeleteSupplierDetails)
 
-//update a shop..
+//update a Supplier..
 router.patch('/:id', UpdateSupplierDetails)
 
 module.exports = router
