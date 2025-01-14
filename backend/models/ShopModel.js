@@ -8,10 +8,11 @@ const ShopSchema = new Schema({
     },
     Shop_code: {
         type: String,
+        unique:true,
         required: true
     },
     Contact: {
-        type: Number,
+        type: String,
         require: true
     },
     Manager: {
