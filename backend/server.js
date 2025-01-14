@@ -7,6 +7,7 @@ const app = express()
 const CustomerRoutes = require('./routes/CustomerRoutes')
 const InventoryRoutes = require('./routes/InventoryRoutes')
 const ShopRoutes = require('./routes/ShopRoutes')
+const SupplierRoutes = require('./routes/SuppliersRoutes')
 
 
 //middlweare..
@@ -21,6 +22,7 @@ app.use((req,res,next)=>{
 app.use('/api/customer', CustomerRoutes)
 app.use('/api/inventory', InventoryRoutes)
 app.use('/api/shop', ShopRoutes)
+app.use('/api/suplier', SupplierRoutes)
 
 //connect mongodb..
 mongoose.connect(process.env.MONGO_URI)
