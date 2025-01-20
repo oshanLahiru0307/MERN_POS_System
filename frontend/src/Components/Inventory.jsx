@@ -5,7 +5,7 @@ import InventoryController from '../Services/InventoryController';
 const Inventory = () => {
   const [inventory, setInventory] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false); // Modal visibility state
-  const [selectedItem, setSelectedItem] = useState(null)
+  const [selectedItem, setSelectedItem] = useState()
   const [form] = Form.useForm(); // Ant Design form instance
 
   const fetchInventory = async () => {
@@ -36,32 +36,31 @@ const Inventory = () => {
   // Handle form submission
   const handleFormSubmit = async (values) => {
 
-    if(!selectedItem){
-      try {
+    try{
+
+      if(!selectedItem){
         console.log('Form Values:', values);
         await InventoryController.addInventoryItem(values);
         fetchInventory(); // Refresh inventory table
         handleCancel(); // Close the modal after submission
-      } catch (error) {
-        console.log('Error adding item:', error);
-      }
+
     }else{
-      try{
+        console.log('Selected Item ID:', selectedItem?._id);
         const data = await InventoryController.editItem(selectedItem._id, values)
         console.log('succesfully update item data', data)
         fetchInventory(); // Refresh inventory table
         handleCancel();
-      }catch(error){
+      }
+    }catch(error){
         console.log('error updating data',error)
         throw error
       }
-    }
 
   };
 
   const handleEdit =  (value)=> {
     setSelectedItem(value)
-    form.setFieldValue(selectedItem)
+    form.setFieldsValue(value)
     setIsModalVisible(true)
   }
 

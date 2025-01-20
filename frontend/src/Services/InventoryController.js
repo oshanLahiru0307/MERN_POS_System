@@ -28,10 +28,9 @@ class InventoryController {
 
   static async editItem(id, value){
     try{
-      const response = await axios.put(
-        `${BASE_URL}/${id}`,
-        value
-      )
+      console.log('Sending update request to:', `${BASE_URL}/${id}`);
+      console.log('Request body:', value);
+      const response = await axios.patch(`${BASE_URL}/${id}`,value)
       console.log('item details updated succesfully')
       return response.data
     }catch(error){
