@@ -15,6 +15,10 @@ const ShopSchema = new Schema({
         type: String,
         require: true
     },
+    Password: {
+        type: String,
+        require: true
+    },
     Manager: {
         type: String,
         required: true

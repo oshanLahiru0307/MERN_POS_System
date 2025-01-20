@@ -1,9 +1,14 @@
-import Dashboard from "./Components/Dashboard";
+import Shopdashbord from "./Components/ShopDashBoard";
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <Dashboard/>
+      <BrowserRouter>
+      <Routes>
+        <Route path = '/shopdashbord' element={<Shopdashbord/>} />
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }

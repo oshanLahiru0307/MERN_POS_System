@@ -1,5 +1,6 @@
 const Shop = require('../models/ShopModel')
 
+
 //get Shops details..
 const getShopsDetails = async (req,res) => {
     try{
@@ -30,10 +31,13 @@ const AddNewShop = async (req,res) => {
         Shop_name,
         Shop_code,
         Contact,
+        Password,
         Manager
     } = req.body
+
+
     try{
-        const newshop = await Shop.create({Shop_name, Shop_code, Contact, Manager})
+        const newshop = await Shop.create({Shop_name, Shop_code, Contact, Password, Manager})
         res.status(200).json(newshop)
     }catch(error){
         res.status(400).json({error:error.message})
