@@ -26,8 +26,32 @@ class InventoryController {
     }
   }
 
+  static async editItem(id, value){
+    try{
+      const response = await axios.put(
+        `${BASE_URL}/${id}`,
+        value
+      )
+      console.log('item details updated succesfully')
+      return response.data
+    }catch(error){
+      console.log('error updating data', error)
+      throw error
+    }
+  }
+
+  static async deleteItem(id){
+    try{
+      const response = await axios.delete(`${BASE_URL}/${id}`)
+      console.log('item deleted succesfully')
+      return response.data
+    }catch(error){
+      console.log('error deleting data', error)
+      throw error
+    }
+  }
+
+
 }
-
-
 
 export default InventoryController;

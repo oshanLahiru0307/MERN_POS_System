@@ -5,6 +5,7 @@ import InventoryController from '../Services/InventoryController';
 const Inventory = () => {
   const [inventory, setInventory] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false); // Modal visibility state
+  const [selectedItem, setSelectedItem] = useState(null)
   const [form] = Form.useForm(); // Ant Design form instance
 
   const fetchInventory = async () => {
@@ -34,30 +35,41 @@ const Inventory = () => {
 
   // Handle form submission
   const handleFormSubmit = async (values) => {
-    try {
-      console.log('Form Values:', values);
-      await InventoryController.addInventoryItem(values);
-      fetchInventory(); // Refresh inventory table
-      handleCancel(); // Close the modal after submission
-    } catch (error) {
-      console.log('Error adding item:', error);
+
+    if(!selectedItem){
+      try {
+        console.log('Form Values:', values);
+        await InventoryController.addInventoryItem(values);
+        fetchInventory(); // Refresh inventory table
+        handleCancel(); // Close the modal after submission
+      } catch (error) {
+        console.log('Error adding item:', error);
+      }
+    }else{
+      try{
+        const data = await InventoryController.editItem(selectedItem._id, values)
+        console.log('succesfully update item data', data)
+        fetchInventory(); // Refresh inventory table
+        handleCancel();
+      }catch(error){
+        console.log('error updating data',error)
+        throw error
+      }
     }
+
   };
 
-  const handleEdit = async (value)=> {
-    try{
-      const data = await InventoryController.editItem(value)
-      console.log('succesfully update item data', data)
-    }catch(error){
-      console.log('error updating data',error)
-      throw error
-    }
+  const handleEdit =  (value)=> {
+    setSelectedItem(value)
+    form.setFieldValue(selectedItem)
+    setIsModalVisible(true)
   }
 
   const handleConfirm = async(itemId)=> {
     try{
       const item = await InventoryController.deleteItem(itemId)
       console.log('successfuly deleted:',item)
+      fetchInventory()
     }catch(error){
       console.log('error deleting data',error)
       throw error
@@ -110,12 +122,17 @@ const Inventory = () => {
       title: 'Action',
       key: 'Action',
       render: (_, record) => (
-        <span>
+        <span
+        >
           <Button
-          color="cyan"
+          type='primary'
           onClick={ ()=> 
             handleEdit(record)
-          }>
+          }
+          style={{
+            marginRight: '5px'
+          }}>
+            Edit
           </Button>
           <Popconfirm
             title="Delete the task"
@@ -124,7 +141,7 @@ const Inventory = () => {
             okText="Yes"
             cancelText="No"
           >
-          <Button type='danger'>Delete</Button>
+          <Button type='primary' danger>Delete</Button>
           </Popconfirm>
 
         </span>
