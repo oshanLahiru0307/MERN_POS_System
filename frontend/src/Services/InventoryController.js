@@ -18,8 +18,7 @@ class InventoryController {
   static async addInventoryItem(values){
     try{
       const response = await axios.post(BASE_URL,values)
-      console.log(response)
-      return 'Item added succesfuly'
+      return response.data
     }catch(error){
       console.log('error adding data', error)
       throw error
@@ -28,10 +27,7 @@ class InventoryController {
 
   static async editItem(id, value){
     try{
-      console.log('Sending update request to:', `${BASE_URL}/${id}`);
-      console.log('Request body:', value);
       const response = await axios.patch(`${BASE_URL}/${id}`,value)
-      console.log('item details updated succesfully')
       return response.data
     }catch(error){
       console.log('error updating data', error)
@@ -42,7 +38,6 @@ class InventoryController {
   static async deleteItem(id){
     try{
       const response = await axios.delete(`${BASE_URL}/${id}`)
-      console.log('item deleted succesfully')
       return response.data
     }catch(error){
       console.log('error deleting data', error)
