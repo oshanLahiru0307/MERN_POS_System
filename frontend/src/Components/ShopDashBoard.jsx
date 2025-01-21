@@ -17,7 +17,7 @@ import Home from './Home';
 import Orders from './Orders';
 import Reports from './Reports';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const ShopDashBoard = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -161,13 +161,6 @@ const ShopDashBoard = () => {
             {snap.activeIndex === 6 && <Inventory/>}
           </div>
         </Content>
-        <Footer
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
       </Layout>
     </Layout>
   );

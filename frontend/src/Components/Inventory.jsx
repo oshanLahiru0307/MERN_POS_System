@@ -121,8 +121,7 @@ const Inventory = () => {
       title: 'Action',
       key: 'Action',
       render: (_, record) => (
-        <span
-        >
+        <span>
           <Button
           type='primary'
           onClick={ ()=> 
@@ -151,7 +150,7 @@ const Inventory = () => {
   return (
     <div>
       <Button type="primary" style={{ marginBottom: '10px' }} onClick={showModal}>
-        Add Item
+        New Item
       </Button>
 
       {/* Ant Design Table */}
