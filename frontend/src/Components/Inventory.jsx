@@ -133,8 +133,8 @@ const Inventory = () => {
             Edit
           </Button>
           <Popconfirm
-            title="Delete the task"
-            description="Are you sure to delete this task?"
+            title="Delete the Item"
+            description="Are you sure to delete this Item?"
             onConfirm={()=> handleConfirm(record._id)}
             okText="Yes"
             cancelText="No"
@@ -154,14 +154,14 @@ const Inventory = () => {
       </Button>
 
       {/* Ant Design Table */}
-      <Table dataSource={inventory} columns={columns} rowKey="_id" />
+      <Table dataSource={inventory} columns={columns} rowKey="_id" pagination = {{ pageSize: 6 }}/>
 
       {/* Modal with Form */}
       <Modal
         title="Add New Item"
         open={isModalVisible}
         onCancel={handleCancel}
-        footer={null} // Custom footer with form buttons
+         // Custom footer with form buttons
       >
         <Form
           form={form}
